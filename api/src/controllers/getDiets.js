@@ -1,15 +1,39 @@
 const { Diet } = require("../db");
 const axios = require("axios");
-const url = "https://spoonacular.com/food-api/docs#Diets";
+const { all } = require("../routes");
+const { API_KEY } = process.env;
+const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`;
 
 const getDiets = async () => {
-  const diets = await axios.get(url);
-  const dietsApi = diets.data.map((e) => {});
+  // const diets = await axios.get(url);
+  // const dietsApi = diets.data.results;
+  // const mappedInfo = dietsApi.map((e) => {
+  //   return {
+  //     id: e.id,
+  //     title: e.title,
+  //     image: e.image,
+  //     diets: e.diets,
+  //   };
+  // });
+  // return mappedInfo;
 
   if (!Diet.length) {
-    Diet.bulkCreate(dietsApi);
+    const diets = await axios.get(url);
+    const dietsApi = diets.data.results;
+    const mappedInfo = dietsApi.map((e) => {
+      return {
+        id: e.id,
+        name: e.title,
+        image: e.image,
+        diets: e.diets,
+      };
+    });
+    Diet.bulkCreate(mappedInfo);
+    const dietsDb = Diet.findAll();
+    return dietsDb;
   } else {
-    res.send(Diet);
+    const dietsDb = Diet.findAll();
+    return dietsDb;
   }
 };
 

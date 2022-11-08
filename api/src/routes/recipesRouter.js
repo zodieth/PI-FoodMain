@@ -4,9 +4,9 @@ require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
 const checkData = require("../middlewares/checkData");
+const { Recipe } = require("../models/Recipe");
 
 recipesRouter = express.Router();
-recipesRouter.use(checkData);
 
 recipesRouter.get("/", async (req, res) => {
   try {
@@ -18,7 +18,7 @@ recipesRouter.get("/", async (req, res) => {
 
     if (name) {
       if (!recipeName.length) {
-        res.status(404).send("El nombre ingresado no existe");
+        res.status(404).send("Recipe not found");
       } else {
         res.send(recipeName);
       }
@@ -33,22 +33,51 @@ recipesRouter.get("/", async (req, res) => {
   }
 });
 
-// recipesRouter.get("/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const recipeIdApi = await axios.get(
-//     `https://api.spoonacular.com/recipes/${id}/information?apiKey=$${API_KEY}`
-//   );
+recipesRouter.get("/:id", async (req, res) => {
+  const { id } = req.params;
 
-//   const idMap = recipeIdApi.data.map((e) => {
-//     return {
-//       id: e.id,
-//       title: e.title,
-//       image: e.image,
-//       diets: e.diets,
-//     };
-//   });
+  try {
+    const recipeIdApi = await axios.get(
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+    );
 
-//   res.send(recipeIdApi.data);
-// });
+    const array = [];
+    array.push(recipeIdApi.data);
+
+    if (!recipeIdApi.length) {
+      res.status(404).send("id not found");
+    } else {
+      const idMap = array.map((e) => {
+        return {
+          id: e.id,
+          title: e.title,
+          image: e.image,
+          diets: e.diets,
+        };
+      });
+
+      res.json(idMap);
+    }
+  } catch (error) {
+    res.status(404).send(error);
+  }
+});
+
+recipesRouter.post("/", checkData, async (req, res) => {
+  try {
+    const form = await Recipe.findOrCreate({
+      where: {
+        name: name,
+        summary: summary,
+        healthScore: healthScore,
+        stepByStep: stepByStep,
+      },
+    });
+
+    console.log(form);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+});
 
 module.exports = recipesRouter;

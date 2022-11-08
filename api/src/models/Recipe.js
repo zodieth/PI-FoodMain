@@ -15,6 +15,8 @@ module.exports = (sequelize) => {
     healthScore: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      max: 10,
+      min: 1,
     },
     stepByStep: {
       type: DataTypes.STRING,
