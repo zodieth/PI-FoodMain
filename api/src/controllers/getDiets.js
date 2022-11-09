@@ -16,8 +16,9 @@ const getDiets = async () => {
   //   };
   // });
   // return mappedInfo;
+  const diet = await Diet.findAll();
 
-  if (!Diet.length) {
+  if (!diet.length) {
     const diets = await axios.get(url);
     const dietsApi = diets.data.results;
     const mappedInfo = dietsApi.map((e) => {

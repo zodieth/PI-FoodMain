@@ -5,6 +5,7 @@ const { API_KEY } = process.env;
 const axios = require("axios");
 const checkData = require("../middlewares/checkData");
 const { Recipe } = require("../models/Recipe");
+const Diet = require("../models/Diet");
 
 recipesRouter = express.Router();
 
@@ -15,7 +16,6 @@ recipesRouter.get("/", async (req, res) => {
       `https://api.spoonacular.com/recipes/complexSearch?query=${name}/&apiKey=${API_KEY}`
     );
     const recipeName = recipeByName.data.results;
-
     if (name) {
       if (!recipeName.length) {
         res.status(404).send("Recipe not found");
@@ -44,7 +44,7 @@ recipesRouter.get("/:id", async (req, res) => {
     const array = [];
     array.push(recipeIdApi.data);
 
-    if (!recipeIdApi.length) {
+    if (!array.length) {
       res.status(404).send("id not found");
     } else {
       const idMap = array.map((e) => {
