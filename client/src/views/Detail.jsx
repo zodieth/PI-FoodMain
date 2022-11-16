@@ -1,9 +1,10 @@
 import React from "react";
-import CardDetail from "../components/CardDetail";
+import CardDetail from "../components/CardDetail/CardDetail";
+import "../App.css";
 
 function Detail() {
   return (
-    <div>
+    <div className="container">
       <CardDetail />
     </div>
   );

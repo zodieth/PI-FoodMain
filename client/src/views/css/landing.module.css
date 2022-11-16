@@ -1,0 +1,31 @@
+.landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background-color: rgb(204, 213, 174);
+  background: linear-gradient(
+    90deg,
+    rgba(204, 213, 174, 1) 0%,
+    rgba(233, 237, 201, 1) 100%
+  );
+  text-decoration: none;
+}
+
+.button {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 40px;
+  margin-left: 10rem;
+  background-color: #52796f;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.button:hover {
+  background-color: #84a98c;
+}

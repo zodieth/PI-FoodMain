@@ -1,0 +1,33 @@
+.paginado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  background-color: #d5bdaf;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  width: 40px;
+  height: 40px;
+  margin: 0.25rem;
+}
+
+.button:hover {
+  background-color: #e3d5ca;
+}
+
+.number {
+  list-style: none;
+  font-size: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

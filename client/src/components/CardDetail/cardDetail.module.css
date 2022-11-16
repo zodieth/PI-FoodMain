@@ -1,0 +1,35 @@
+/* .container {
+  display: flex;
+  flex-direction: row;
+  border-radius: 2rem;
+  padding: 3rem;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  width: 500px;
+  height: 700px;
+  flex-wrap: wrap;
+} */
+
+.img {
+  width: 200px;
+  height: 200px;
+
+  /* border-radius: 1rem; */
+}
+
+h1 {
+  font-size: 1.25rem;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.5rem black;
+  border-radius: 2rem;
+  width: 86rem;
+  height: fit-content;
+  margin: 3rem;
+}

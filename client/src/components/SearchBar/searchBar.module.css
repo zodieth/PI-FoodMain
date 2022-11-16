@@ -1,0 +1,37 @@
+.container {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  border: 0.5px solid black;
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #e9edc9;
+  font-size: 1.5rem;
+}
+
+input::placeholder {
+  color: #2f3e46;
+  font-size: 1.25rem;
+}
+
+.button {
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9edc9;
+  border: 0.5px solid black;
+  width: 40px;
+  height: 44px;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #6a994e;
+}
